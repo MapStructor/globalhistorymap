@@ -3,7 +3,7 @@
 
 //ACCESS TOKEN
 mapboxgl.accessToken =
-  "pk.eyJ1IjoibWFwbnkiLCJhIjoiY2xtMG93amk4MnBrZTNnczUzY2VvYjg0ciJ9.MDMHYBlVbG14TJD120t6NQ";
+  "pk.eyJ1IjoibWFwbnkiLCJhIjoiY21hN3E2N2FwMTZiMDJtb2w0bjE2bzlsYSJ9.l7TRFISdkWLgfHYgPPDw8A";
 
 // #endregion
 
