@@ -135,6 +135,11 @@ $(document).ready(function () {
   //#region Slider Initialization
   // Initializes the time slider and its event handlers
 
+ var sliderTimer = null,
+     sliderTimerPeriod = 500,
+	 sliderTempVal = 0,
+	 sliderLastVal = 0;
+
   $("#slider").slider({
     min: sliderStart,
     max: sliderEnd,
@@ -189,8 +194,29 @@ $(document).ready(function () {
         .text(moment.unix(sliderMiddle).format("MM/DD/YYYY"));
     },
     change: function (event, ui) {},
-    stop: function (event, ui) {
-	    changeDate(ui.value);
+    start: function (event, ui) {
+		console.warn("- START -");
+		sliderLastVal = ui.value;
+		
+		sliderTimer = setInterval(function() {
+                        sliderTempVal = $("#slider").slider("value");
+			
+			if(sliderTempVal != sliderLastVal) {
+				sliderLastVal = sliderTempVal;
+				changeDate(sliderLastVal);
+			}
+        }, sliderTimerPeriod);
+		
+	    
+    },
+	stop: function (event, ui) {
+		console.warn("- END -");
+		
+		clearInterval(sliderTimer);
+        sliderTimer = null;
+		
+		if(sliderLastVal != ui.value)
+	        changeDate(ui.value);
     },
   });
   $("#date").text(
